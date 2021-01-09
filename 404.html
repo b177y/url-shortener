@@ -18,7 +18,7 @@
         var location = window.location;
           
         var linkId = location.pathname.split("/")[1];
-        var indexPage = "https://billy.rip"
+        var indexPage = "https://billy.rip".trim();
 
         var xhr = new XMLHttpRequest();
 
@@ -33,6 +33,7 @@
                 console.log("Comparing title: " + title + " to url: " + linkId);
                 console.log("Length of title: " + title.length + typeof title + "Length of linkid" + linkId.length + typeof linkId);
                 if (linkId == title){
+                    console.log("LINKID = TITLE");
                     if (isUrl(body)){
                         location.replace(body);
                     } else {
