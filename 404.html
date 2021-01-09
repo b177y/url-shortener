@@ -18,13 +18,7 @@
         var location = window.location;
           
         var linkId = location.pathname.split("/")[1];
-        var homepage =
-          location.protocol +
-          "//" +
-          location.hostname +
-          (location.port ? ":" + location.port : "") +
-          "/" +
-          location.pathname.split("/")[1];
+        var indexPage = "https://billy.rip"
 
         var xhr = new XMLHttpRequest();
 
@@ -35,21 +29,22 @@
                 var issue = payload[i];
                 title = issue.title.trim();
                 body = issue.body.trim();
-                console.log(issue.title, issue.body);
-                if (linkId == issue.title){
+                console.log(title, body);
+                console.log("Comparing title: " + title + " to url: " + linkId);
+                if (linkId == title){
                     if (isUrl(body)){
-                        location.replace(issue.body);
+                        location.replace(body);
                     } else {
-                        console.log("REDIRECTING TO" + homepage);
-                        location.replace(homepage);
+                        console.log("Body of GitHub Issue is not a url... Redirecting to: " + indexPage);
+                        location.replace(indexPage);
                     }
                 }
             }
-            console.log("REDIRECTING TO" + homepage);
-            location.replace(homepage);
+            console.log("Link is not found in issues... Redirecting to: " + indexPage);
+            location.replace(indexPage);
           } catch (e) {
-            console.log("REDIRECTING TO" + homepage);
-            location.replace(homepage);
+            console.log("Unkown error... Redirecting to: " + indexPage);
+            location.replace(indexPage);
           }
         }
 
