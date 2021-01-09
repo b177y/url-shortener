@@ -1,0 +1,5 @@
+= URL Shortener
+
+The code in this repo is from [@nelsontky's](https://github.com/nelsontky) [gh-pages-url-shortener](https://github.com/nelsontky/gh-pages-url-shortener).
+
+The 404 page is a custom version of the page from [@itsron717's](https://github.com/itsron717) [Particle Portfolio Template](https://github.com/itsron717/ParticleGround-Portfolio).
