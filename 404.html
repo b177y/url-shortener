@@ -35,7 +35,7 @@
                 labels = issue.labels;
                 console.log(title, body, user, labels);
                 if (linkId == title){
-                    if !(user in enabledUsers){
+                    if (!(user in enabledUsers)){
                         console.log("Link added by user who has not been enabled");
                         location.replace(invalidUserPage);
                         return;
