@@ -31,6 +31,7 @@
                 body = issue.body.trim();
                 console.log(title, body);
                 console.log("Comparing title: " + title + " to url: " + linkId);
+                console.log("Length of title: " + title.length + typeof title + "Length of linkid" + linkId.length + typeof linkId);
                 if (linkId == title){
                     if (isUrl(body)){
                         location.replace(body);
