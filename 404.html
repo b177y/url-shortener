@@ -40,12 +40,15 @@
                     if (isUrl(body)){
                         location.replace(issue.body);
                     } else {
+                        console.log("REDIRECTING TO" + homepage);
                         location.replace(homepage);
                     }
                 }
             }
+            console.log("REDIRECTING TO" + homepage);
             location.replace(homepage);
           } catch (e) {
+            console.log("REDIRECTING TO" + homepage);
             location.replace(homepage);
           }
         }
