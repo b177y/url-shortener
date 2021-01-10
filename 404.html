@@ -1,86 +1,23 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" class="no-js">
   <head>
-    <meta charset="utf-8" />
+    <base target="_blank">
+    <meta charset="UTF-8" />
     <title>Redirecting...</title>
-    <script>
-      var GITHUB_ISSUES_LINK =
-        "https://api.github.com/repos/b177y/url-shortener/issues";
-
-      var enabledUsers = {'b177y': ''};
-
-      function isUrl(url) {
-        // Regex from https://stackoverflow.com/a/3809435, with a modification to allow for TLDs of up to 24 characters
-        return /^https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,24}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)+$/.test(
-          url
-        );
-      }
-
-      function redirect() {
-        var location = window.location;
-          
-        console.log("PATHNAME" + location.pathname);
-        var linkId = location.pathname.split("/")[1];
-        var indexPage = "https://billy.rip";
-        var invalidUserPage = "https://billy.rip/invaliduser";
-
-        var indexPage = "http://localhost:8000";
-        var invalidUserPage = "http://localhost:8000/invaliduser.html";
-
-        var xhr = new XMLHttpRequest();
-
-        xhr.onload = function () {
-          try {
-            var payload = JSON.parse(xhr.response);
-            for (var i = 0; i < payload.length; i++) {
-                var issue = payload[i];
-                title = issue.title.trim();
-                body = issue.body.trim();
-                user = issue.user.login.trim();
-                labels = issue.labels;
-                console.log(title, body, user, labels);
-                if (linkId == title){
-                    if (!(user in enabledUsers)){
-                        console.log("Link added by user who has not been enabled");
-                        var authorisedGuest = false;
-                        for (var j = 0; j < labels.length; j++){
-                           if (labels[j].name == "redirect-authorised"){
-                               console.log("Redirect is authorised");
-                               authorisedGuest = true;
-                           }
-                        }
-                        if (!authorisedGuest){
-                            console.log("Redirect link not authorised");
-                            location.replace(invalidUserPage);
-                            return;
-                        }
-                    }
-                    if (!(isUrl(body))){
-                        console.log("Body of GitHub Issue is not a url... Redirecting to: " + indexPage);
-                        location.replace(indexPage);
-                        return;
-                    }
-                    location.replace(body);
-                    return;
-                }
-            }
-            console.log("Link is not found in issues... Redirecting to: " + indexPage);
-            location.replace(indexPage);
-          } catch (e) {
-            console.log("Unkown error... Redirecting to: " + indexPage);
-            location.replace(indexPage);
-          }
-        }
-
-        xhr.onerror = function () {
-          location.replace(homepage);
-        };
-        xhr.open("GET", GITHUB_ISSUES_LINK);
-        xhr.send();
-      }
-
-      redirect();
-    </script>
+      <link rel="shortcut icon" type="image/png" href="/assets/favicon.png">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="/css/style.css"/>
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous" type="text/css">
+      <script type="text/javascript" src="/js/jquery.particleground.js"></script>
+      <script type="text/javascript" src="/js/demo.js"></script>
+    <script type="text/javascript" src="/js/redirect.js"></script>
   </head>
-  <body></body>
+  <body>
+    <div id="particles">
+      <div id="intro">
+          <h2 style="font-family: 'Syncopate', sans-serif; font-weight: 10;" id="redirect_msg"></h2>
+          <h3 style="font-family: 'Syncopate', sans-serif; font-weight: 10;" id="redirect_sub"></h3>
+      </div>
+    </div>
+  </body>
 </html>
