@@ -1,4 +1,4 @@
-var GITHUB_ISSUES_LINK = "https://api.github.com/repos/b177y/url-shortener/issues";
+var GITHUB_ISSUES_LINK = "https://api.github.com/repos/b177y/url-shortener/issues?per_page=100";
 
 var enabledUsers = {
   'b177y': {
